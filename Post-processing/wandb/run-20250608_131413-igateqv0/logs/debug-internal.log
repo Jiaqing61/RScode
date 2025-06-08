@@ -1,0 +1,15 @@
+{"time":"2025-06-08T13:14:13.426271+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/Users/huangjiaqing/Desktop/Recommender Systems/RScode/Post-processing/wandb/run-20250608_131413-igateqv0/logs/debug-core.log"}
+{"time":"2025-06-08T13:14:13.704009+02:00","level":"INFO","msg":"created new stream","id":"igateqv0"}
+{"time":"2025-06-08T13:14:13.704057+02:00","level":"INFO","msg":"stream: started","id":"igateqv0"}
+{"time":"2025-06-08T13:14:13.7041+02:00","level":"INFO","msg":"sender: started","stream_id":"igateqv0"}
+{"time":"2025-06-08T13:14:13.704092+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"igateqv0"}
+{"time":"2025-06-08T13:14:13.704145+02:00","level":"INFO","msg":"handler: started","stream_id":"igateqv0"}
+{"time":"2025-06-08T13:14:13.950526+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-08T13:17:32.15334+02:00","level":"INFO","msg":"stream: closing","id":"igateqv0"}
+{"time":"2025-06-08T13:17:32.153798+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-08T13:17:32.154085+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-08T13:17:32.765127+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-08T13:17:32.967422+02:00","level":"INFO","msg":"handler: closed","stream_id":"igateqv0"}
+{"time":"2025-06-08T13:17:32.967596+02:00","level":"INFO","msg":"sender: closed","stream_id":"igateqv0"}
+{"time":"2025-06-08T13:17:32.967739+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"igateqv0"}
+{"time":"2025-06-08T13:17:32.967777+02:00","level":"INFO","msg":"stream: closed","id":"igateqv0"}

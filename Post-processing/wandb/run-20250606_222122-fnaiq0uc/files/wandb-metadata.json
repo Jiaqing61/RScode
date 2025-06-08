@@ -1,0 +1,40 @@
+{
+  "os": "macOS-15.0-arm64-arm-64bit",
+  "python": "CPython 3.10.17",
+  "startedAt": "2025-06-06T20:21:22.469814Z",
+  "program": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/Post-processing/run.py",
+  "codePath": "Desktop/Recommender Systems/RScode/Post-processing/run.py",
+  "email": "jiaqinghuang61@gmail.com",
+  "root": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/Post-processing",
+  "host": "macbookpro.home",
+  "executable": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/.venv/bin/python",
+  "codePathLocal": "run.py",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "994662584320",
+      "used": "691384938496"
+    },
+    "/System/Volumes/Data": {
+      "total": "994662584320",
+      "used": "691384938496"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 10
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 16,
+    "swapTotalBytes": "5368709120",
+    "ramTotalBytes": "17179869184"
+  }
+}
