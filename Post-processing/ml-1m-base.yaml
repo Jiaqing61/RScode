@@ -78,7 +78,7 @@ log_root: ../outputs/logs/
 repeatable: true # Use fixed ranking behavior for consistent evaluation
 
 eval_args:
-  #  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
+  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
   mode: { "valid": full, "test": full } # Evaluate on full item set
   order: RO # Random order before splitting
   group_by: user # Group data by user for splitting

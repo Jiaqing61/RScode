@@ -220,3 +220,17 @@ Sun 08 Jun 2025 19:48:38 INFO  epoch 18 evaluating [time: 2215.25s, valid_score:
 Sun 08 Jun 2025 19:48:38 INFO  valid result: 
 recall@10 : 0.0733    precision@10 : 0.0314    ndcg@10 : 0.0565    hit@10 : 0.2754    itemcoverage@10 : 0.0803    averagepopularity@10 : 11452.4698    giniindex@10 : 0.9943    shannonentropy@10 : 0.0005    tailpercentage@10 : 0.0
 Sun 08 Jun 2025 19:56:23 INFO  epoch 19 training [time: 465.32s, train loss: 175.0108]
+Sun 08 Jun 2025 20:33:43 INFO  epoch 19 evaluating [time: 2239.16s, valid_score: 0.057200]
+Sun 08 Jun 2025 20:33:43 INFO  valid result: 
+recall@10 : 0.0744    precision@10 : 0.0318    ndcg@10 : 0.0572    hit@10 : 0.2794    itemcoverage@10 : 0.0832    averagepopularity@10 : 13493.3015    giniindex@10 : 0.9943    shannonentropy@10 : 0.0005    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 20:33:43 INFO  Saving current: ../checkpoint_saved/lastfm-360k/BPR-Jun-07-2025_22-53-22.pth
+Sun 08 Jun 2025 20:43:53 INFO  epoch 20 training [time: 610.02s, train loss: 168.3825]
+Sun 08 Jun 2025 21:22:59 INFO  epoch 20 evaluating [time: 2345.87s, valid_score: 0.056400]
+Sun 08 Jun 2025 21:22:59 INFO  valid result: 
+recall@10 : 0.0731    precision@10 : 0.0313    ndcg@10 : 0.0564    hit@10 : 0.2747    itemcoverage@10 : 0.0861    averagepopularity@10 : 11583.0156    giniindex@10 : 0.9938    shannonentropy@10 : 0.0005    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 21:31:05 INFO  epoch 21 training [time: 485.84s, train loss: 160.4202]
+Sun 08 Jun 2025 22:09:01 INFO  epoch 21 evaluating [time: 2276.22s, valid_score: 0.057700]
+Sun 08 Jun 2025 22:09:01 INFO  valid result: 
+recall@10 : 0.0749    precision@10 : 0.032    ndcg@10 : 0.0577    hit@10 : 0.2809    itemcoverage@10 : 0.0885    averagepopularity@10 : 11274.9588    giniindex@10 : 0.9936    shannonentropy@10 : 0.0005    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 22:09:02 INFO  Saving current: ../checkpoint_saved/lastfm-360k/BPR-Jun-07-2025_22-53-22.pth
+Sun 08 Jun 2025 22:17:41 INFO  epoch 22 training [time: 519.50s, train loss: 153.9645]

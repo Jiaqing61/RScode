@@ -80,8 +80,10 @@ repeatable: true # Use fixed ranking behavior for consistent evaluation
 eval_args:
   #  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
   mode: { "valid": full, "test": full } # Evaluate on full item set
-  order: RO # Random order before splitting
-  group_by: user # Group data by user for splitting
+  #  order: RO # Random order before splitting
+  #  group_by: user # Group data by user for splitting
+
+benchmark_filename: [ 'train', 'valid', 'test' ]
 
 metrics: [
   "Precision",
@@ -137,8 +139,6 @@ load_col:
 ## -------------------------- Group-Based Fairness Evaluation --------------------------
 #user_group_fields: [ 'gender', 'activity_group' ]  # User-level group dimensions for fairness analysis
 #item_group_fields: [ 'popularity_group' ]                       # Item-level group dimension (e.g., long-tail analysis)
-
-benchmark_filename: [ 'train', 'valid', 'test' ]
 
 # ============================== Model Settings ==============================
 model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
