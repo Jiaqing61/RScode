@@ -198,3 +198,8 @@ Sun 08 Jun 2025 16:04:32 INFO  epoch 13 evaluating [time: 2024.13s, valid_score:
 Sun 08 Jun 2025 16:04:32 INFO  valid result: 
 recall@10 : 0.0696    precision@10 : 0.0298    ndcg@10 : 0.0535    hit@10 : 0.2636    itemcoverage@10 : 0.0615    averagepopularity@10 : 12635.1954    giniindex@10 : 0.996    shannonentropy@10 : 0.0007    tailpercentage@10 : 0.0
 Sun 08 Jun 2025 16:11:58 INFO  epoch 14 training [time: 445.38s, train loss: 236.4270]
+Sun 08 Jun 2025 16:47:12 INFO  epoch 14 evaluating [time: 2113.91s, valid_score: 0.056000]
+Sun 08 Jun 2025 16:47:12 INFO  valid result: 
+recall@10 : 0.0722    precision@10 : 0.0309    ndcg@10 : 0.056    hit@10 : 0.2719    itemcoverage@10 : 0.0662    averagepopularity@10 : 14036.0841    giniindex@10 : 0.9956    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 16:47:13 INFO  Saving current: ../checkpoint_saved/lastfm-360k/BPR-Jun-07-2025_22-53-22.pth
+Sun 08 Jun 2025 16:55:18 INFO  epoch 15 training [time: 484.99s, train loss: 219.8484]

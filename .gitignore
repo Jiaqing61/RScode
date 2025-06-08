@@ -33,4 +33,7 @@ dist/
 *.egg-info/
 .eggs/
 
+# Ignore datasets
+datasets/
+
 
