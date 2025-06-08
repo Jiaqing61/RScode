@@ -84,15 +84,15 @@ eval_args:
   group_by: user # Group data by user for splitting
 
 metrics: [
-  "Recall",
   "Precision",
-  "NDCG",
+  "Recall",
   "Hit", # Accuracy metrics
+  "NDCG",
   "ItemCoverage", # item Diversity
   "AveragePopularity", # pop
-  "GiniIndex", #pop - niche
   "ShannonEntropy", # Diversity metrics
-  "TailPercentage",
+  "GiniIndex", #pop - niche
+  "TailPercentage"
 ]
 
 topk: 10 # Evaluate metrics at multiple Top-K levels

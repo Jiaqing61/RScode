@@ -84,14 +84,14 @@ eval_args:
   group_by: user # Group data by user for splitting
 
 metrics: [
-  "Recall",
   "Precision",
+  "Recall",
   "Hit", # Accuracy metrics
   "NDCG",
   "ItemCoverage", # item Diversity
   "AveragePopularity", # pop
-  "GiniIndex", #pop - niche
   "ShannonEntropy", # Diversity metrics
+  "GiniIndex", #pop - niche
   "TailPercentage"
 ]
 

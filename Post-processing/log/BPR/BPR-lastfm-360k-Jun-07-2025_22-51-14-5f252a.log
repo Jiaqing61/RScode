@@ -203,3 +203,20 @@ Sun 08 Jun 2025 16:47:12 INFO  valid result:
 recall@10 : 0.0722    precision@10 : 0.0309    ndcg@10 : 0.056    hit@10 : 0.2719    itemcoverage@10 : 0.0662    averagepopularity@10 : 14036.0841    giniindex@10 : 0.9956    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0
 Sun 08 Jun 2025 16:47:13 INFO  Saving current: ../checkpoint_saved/lastfm-360k/BPR-Jun-07-2025_22-53-22.pth
 Sun 08 Jun 2025 16:55:18 INFO  epoch 15 training [time: 484.99s, train loss: 219.8484]
+Sun 08 Jun 2025 17:32:36 INFO  epoch 15 evaluating [time: 2238.44s, valid_score: 0.055600]
+Sun 08 Jun 2025 17:32:36 INFO  valid result: 
+recall@10 : 0.0724    precision@10 : 0.031    ndcg@10 : 0.0556    hit@10 : 0.2721    itemcoverage@10 : 0.0695    averagepopularity@10 : 12504.2938    giniindex@10 : 0.9952    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 17:40:58 INFO  epoch 16 training [time: 501.41s, train loss: 206.2030]
+Sun 08 Jun 2025 18:18:35 INFO  epoch 16 evaluating [time: 2257.52s, valid_score: 0.056700]
+Sun 08 Jun 2025 18:18:35 INFO  valid result: 
+recall@10 : 0.0732    precision@10 : 0.0314    ndcg@10 : 0.0567    hit@10 : 0.2752    itemcoverage@10 : 0.0735    averagepopularity@10 : 13749.316    giniindex@10 : 0.9951    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 18:18:36 INFO  Saving current: ../checkpoint_saved/lastfm-360k/BPR-Jun-07-2025_22-53-22.pth
+Sun 08 Jun 2025 18:26:44 INFO  epoch 17 training [time: 488.29s, train loss: 195.1917]
+Sun 08 Jun 2025 19:03:57 INFO  epoch 17 evaluating [time: 2233.01s, valid_score: 0.055900]
+Sun 08 Jun 2025 19:03:57 INFO  valid result: 
+recall@10 : 0.0724    precision@10 : 0.031    ndcg@10 : 0.0559    hit@10 : 0.2725    itemcoverage@10 : 0.0765    averagepopularity@10 : 12338.3375    giniindex@10 : 0.9948    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 19:11:43 INFO  epoch 18 training [time: 465.52s, train loss: 184.5000]
+Sun 08 Jun 2025 19:48:38 INFO  epoch 18 evaluating [time: 2215.25s, valid_score: 0.056500]
+Sun 08 Jun 2025 19:48:38 INFO  valid result: 
+recall@10 : 0.0733    precision@10 : 0.0314    ndcg@10 : 0.0565    hit@10 : 0.2754    itemcoverage@10 : 0.0803    averagepopularity@10 : 11452.4698    giniindex@10 : 0.9943    shannonentropy@10 : 0.0005    tailpercentage@10 : 0.0
+Sun 08 Jun 2025 19:56:23 INFO  epoch 19 training [time: 465.32s, train loss: 175.0108]

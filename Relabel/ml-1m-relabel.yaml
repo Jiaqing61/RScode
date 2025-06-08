@@ -36,31 +36,6 @@ shuffle: true # Shuffle training data each epoch
 # ----------------------------------------------------------------------------------
 
 data_path: datasets/ # Input dataset directory
-dataset: ml-1m
-field_separator: "\t" # Delimiter used in atomic files (.inter, .user, .item)
-seq_separator: " " # Delimiter for sequence-type fields (not used in this dataset)
-
-# -------------------------- Field Mappings --------------------------
-USER_ID_FIELD: user_id # Field name for user ID
-ITEM_ID_FIELD: item_id # Field name for item ID
-RATING_FIELD: rating # Field name for rating score
-TIME_FIELD: timestamp # Field name for interaction timestamp
-
-# -------------------------- Column Selection --------------------------
-load_col:
-  inter: ["user_id", "item_id", "rating", "timestamp"] # Load selected interaction fields
-  user: ["user_id", "age_group", "gender", "activity_group"] # User attributes for fairness/grouping
-  item: ["item_id", "popularity_group"] # Item attributes (e.g., genre, popularity)
-
-# -------------------------- Interaction Filtering --------------------------
-val_interval:
-  rating: "[4,inf)" # Keep only interactions with ratings ≥ 3 (treated as implicit positives)
-user_inter_num_interval: "[5,inf)" # Retain users with 5 or more interactions
-item_inter_num_interval: "[1,inf)" # Retain items with at least 1 interaction
-
-# -------------------------- Group-Based Fairness Evaluation --------------------------
-user_group_fields: ["age_group", "gender", "activity_group"] # User-level group dimensions for fairness analysis
-item_group_fields: ["popularity_group"] # Item-level group dimension (e.g., long-tail analysis)
 
 save_dataset: true # Save processed dataset (.pth)
 dataset_save_path: ~ # Use RecBole’s default dataset caching logic
@@ -70,6 +45,12 @@ dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
 
 checkpoint_dir: ../checkpoint_saved/ml-1m/ # Path to save model checkpoints
 output_path: ../outputs/results/ml-1m/ # Path for final metrics, plots, and logs
+
+log_wandb: true                                  # Enable logging to Weights & Biases
+wandb_project: jiaqing61-tud                            # W&B project name
+wandb_path: outputs/
+wandb_run_id: ~
+wandb_run_name: ~   # set dynamically: {model}-{dataset}-{timestamp}
 
 date: ~ # set dynamically: YYYY-MM-DD
 timestamp: ~ # set dynamically: YYYY-MM-DD_HH-MM-SS
@@ -97,30 +78,67 @@ log_root: ../outputs/logs/
 repeatable: true # Use fixed ranking behavior for consistent evaluation
 
 eval_args:
-  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
+  #  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
   mode: { "valid": full, "test": full } # Evaluate on full item set
   order: RO # Random order before splitting
   group_by: user # Group data by user for splitting
 
 metrics: [
-    "Recall",
-    "Precision",
-    "NDCG",
-    "MRR",
-    "MAP",
-    "Hit", # Accuracy metrics
-#   "ItemCoverage",
-#    "AveragePopularity",
-#    "GiniIndex",
-    "ShannonEntropy", # Diversity metrics
-#   "TailPercentage",
-  ]
+  "Precision",
+  "Recall",
+  "Hit", # Accuracy metrics
+  "NDCG",
+  "ItemCoverage", # item Diversity
+  "AveragePopularity", # pop
+  "ShannonEntropy", # Diversity metrics
+  "GiniIndex", #pop - niche
+  "TailPercentage"
+]
 
 topk: 10 # Evaluate metrics at multiple Top-K levels
 valid_metric: NDCG@10 # Use NDCG@10 for early stopping
 valid_metric_bigger: true # Higher NDCG@10 is considered better
 eval_batch_size: 4096 # Evaluation batch size (adjust to GPU memory)
-metric_decimal_place: 3 # Precision for reported metrics
+metric_decimal_place: 4 # Precision for reported metrics
+
+# ============================== Custom Project Settings ==============================
+# Fairness-specific configuration for tail-item group definitions and test skipping.
+# ----------------------------------------------------------------------------------
+
+skip_test: false # Optionally skip test evaluation (useful for debugging)
+tail_ratio: 0.2 # Define bottom 20% of items (by interaction mass) as tail
+
+# ============================== MovieLens 1M Dataset Configuration ==============================
+dataset: ml-1m
+# -------------------------- File Format --------------------------
+field_separator: "\t"                 # Delimiter used in atomic files (.inter, .user, .item)
+seq_separator: " "                    # Delimiter for sequence-type fields (not used in this dataset)
+
+# -------------------------- Field Mappings --------------------------
+USER_ID_FIELD: user_id # Field name for user ID
+ITEM_ID_FIELD: item_id # Field name for item ID
+#RATING_FIELD: rating # Field name for rating score
+LABEL_FIELD: label
+TIME_FIELD: timestamp # Field name for interaction timestamp
+
+# -------------------------- Label Binarization --------------------------
+#threshold:
+#  rating: 3                           # Ratings ≥ 3 → label = 1 (positive), else → label = 0 (negative)
+# -------------------------- Column Selection --------------------------
+load_col:
+  inter: [ 'user_id', 'item_id', 'label', 'timestamp' ]       # Load selected interaction fields
+
+# -------------------------- Interaction Filtering --------------------------
+#val_interval:
+#rating: "[5,inf)" # Keep only interactions with ratings ≥ 5 (treated as implicit positives)
+#user_inter_num_interval: "[30,inf)" # Retain users with 5 or more interactions
+#item_inter_num_interval: "[0,inf)" # Retain items with at least 1 interaction
+
+## -------------------------- Group-Based Fairness Evaluation --------------------------
+#user_group_fields: [ 'gender', 'activity_group' ]  # User-level group dimensions for fairness analysis
+#item_group_fields: [ 'popularity_group' ]                       # Item-level group dimension (e.g., long-tail analysis)
+
+benchmark_filename: [ 'train', 'valid', 'test' ]
 
 # ============================== Model Settings ==============================
 model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
@@ -128,8 +146,10 @@ model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
 learner: adam # Optimizer used (e.g., adam, sgd)
 
 eval_step: 1 # Evaluate every N epochs
-stopping_step: 5 # Early stopping patience (if no improvement for 10 evals)
+stopping_step: 10 # Early stopping patience (if no improvement for 10 evals)
 epochs: 100 # Maximum number of epochs
+
+# -------------------------- Training: Pairwise Negative Sampling --------------------------
 train_neg_sample_args:
   distribution: uniform
   sample_num: 1
@@ -139,14 +159,8 @@ train_neg_sample_args:
 
 # ============================== Hyperparameters ==============================
 embedding_size: 64 # Dimensionality of user/item embeddings
-learning_rate: 0.001 # Initial learning rate
+learning_rate: 0.0005 # Initial learning rate
 train_batch_size: 1024 # Mini-batch size for training
-reg_weight: 0.0002 # L2 regularization on embeddings
+reg_weight: 0.0003 # L2 regularization on embeddings
 
-# ============================== Custom Project Settings ==============================
-# Fairness-specific configuration for tail-item group definitions and test skipping.
-# ----------------------------------------------------------------------------------
 
-skip_test: false # Optionally skip test evaluation (useful for debugging)
-tail_ratio: 0.2 # Define bottom 20% of items (by interaction mass) as tail
-head_ratio: 0.8 # Define top 80% of items (by interaction mass) as head

@@ -84,14 +84,14 @@ eval_args:
   group_by: user # Group data by user for splitting
 
 metrics: [
-  "Recall",
   "Precision",
+  "Recall",
   "Hit", # Accuracy metrics
   "NDCG",
   "ItemCoverage", # item Diversity
   "AveragePopularity", # pop
-  "GiniIndex", #pop - niche
   "ShannonEntropy", # Diversity metrics
+  "GiniIndex", #pop - niche
   "TailPercentage"
 ]
 
@@ -117,15 +117,16 @@ seq_separator: " "                    # Delimiter for sequence-type fields (not 
 # -------------------------- Field Mappings --------------------------
 USER_ID_FIELD: user_id # Field name for user ID
 ITEM_ID_FIELD: item_id # Field name for item ID
-RATING_FIELD: rating # Field name for rating score
+#RATING_FIELD: rating # Field name for rating score
+LABEL_FIELD: label
 TIME_FIELD: timestamp # Field name for interaction timestamp
 
 # -------------------------- Label Binarization --------------------------
-threshold:
-  rating: 3                           # Ratings ≥ 3 → label = 1 (positive), else → label = 0 (negative)
+#threshold:
+#  rating: 3                           # Ratings ≥ 3 → label = 1 (positive), else → label = 0 (negative)
 # -------------------------- Column Selection --------------------------
 load_col:
-  inter: [ 'user_id', 'item_id', 'rating', 'timestamp' ]       # Load selected interaction fields
+  inter: [ 'user_id', 'item_id', 'label', 'timestamp' ]       # Load selected interaction fields
 
 # -------------------------- Interaction Filtering --------------------------
 #val_interval:

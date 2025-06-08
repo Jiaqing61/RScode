@@ -30,3 +30,4 @@
 {"time":"2025-06-08T10:02:16.350736+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.2.10:61948->35.186.228.49:443: read: connection reset by peer"}
 {"time":"2025-06-08T10:18:30.283641+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.2.10:61960->35.186.228.49:443: read: connection reset by peer"}
 {"time":"2025-06-08T10:34:25.95462+02:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.2.10:61977->35.186.228.49:443: read: connection reset by peer"}
+{"time":"2025-06-08T17:04:50.620528+02:00","level":"ERROR","msg":"runconsolelogs: failed to write to file: failed to open file: open /Users/huangjiaqing/Desktop/Recommender Systems/RScode/Post-processing/wandb/run-20250607_225321-cqm2yg5h/files/output.log: no such file or directory"}
