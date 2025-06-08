@@ -1,7 +1,0 @@
-{"time":"2025-06-08T13:34:28.298551+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/Users/huangjiaqing/Desktop/Recommender Systems/RScode/Post-processing/wandb/run-20250608_133428-jz8z2x8w/logs/debug-core.log"}
-{"time":"2025-06-08T13:34:28.568226+02:00","level":"INFO","msg":"created new stream","id":"jz8z2x8w"}
-{"time":"2025-06-08T13:34:28.568264+02:00","level":"INFO","msg":"stream: started","id":"jz8z2x8w"}
-{"time":"2025-06-08T13:34:28.568278+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"jz8z2x8w"}
-{"time":"2025-06-08T13:34:28.56832+02:00","level":"INFO","msg":"handler: started","stream_id":"jz8z2x8w"}
-{"time":"2025-06-08T13:34:28.568317+02:00","level":"INFO","msg":"sender: started","stream_id":"jz8z2x8w"}
-{"time":"2025-06-08T13:34:28.836921+02:00","level":"INFO","msg":"Starting system monitor"}

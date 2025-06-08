@@ -83,6 +83,8 @@ eval_args:
   order: RO # Random order before splitting
   group_by: user # Group data by user for splitting
 
+#benchmark_filename: [ 'train', 'valid', 'test' ]
+
 metrics: [
   "Precision",
   "Recall",
@@ -122,7 +124,7 @@ RATING_FIELD: plays # Field name for rating score  #plays_user_norm
 
 # -------------------------- Label Binarization --------------------------
 threshold:
-  plays: 3                           # plays ≥ 3 → label = 1 (positive), else → label = 0 (negative)
+  plays: 2                           # plays ≥ 2 → label = 1 (positive), else → label = 0 (negative)
   #plays_user_norm: 0.1              # plays_user_norm ≥ 0.1 → label = 1 (positive), else → label = 0 (negative)
 # -------------------------- Column Selection --------------------------
 load_col:
@@ -139,8 +141,6 @@ load_col:
 ## -------------------------- Group-Based Fairness Evaluation --------------------------
 #user_group_fields: [ 'gender', 'activity_group' ]  # User-level group dimensions for fairness analysis
 #item_group_fields: [ 'popularity_group' ]                       # Item-level group dimension (e.g., long-tail analysis)
-
-#benchmark_filename: [ 'train', 'valid', 'test' ]
 
 # ============================== Model Settings ==============================
 model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
