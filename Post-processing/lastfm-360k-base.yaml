@@ -44,18 +44,18 @@ save_dataloaders: true # Save split dataloaders for reuse
 dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
 
 checkpoint_dir: checkpoint_saved/lastfm-360k/ # Path to save model checkpoints
-output_path: outputs/results/lastfm-360k/ # Path for final metrics, plots, and logs
+output_path: rank_results/results/lastfm-360k/ # Path for final metrics, plots, and logs
 
 log_wandb: true                                  # Enable logging to Weights & Biases
 wandb_project: jiaqing61-tud                            # W&B project name
-wandb_path: outputs/
+wandb_path: rank_results/
 wandb_run_id: ~
 wandb_run_name: ~   # set dynamically: {model}-{dataset}-{timestamp}
 
 date: ~ # set dynamically: YYYY-MM-DD
 timestamp: ~ # set dynamically: YYYY-MM-DD_HH-MM-SS
 
-log_root: outputs/logs/
+log_root: rank_results/logs/
 
 # ============================== Evaluation Settings ==============================
 # Controls evaluation strategy, split mode, ranking metrics, and early stopping behavior.

@@ -144,7 +144,7 @@ external_config_dict:
                 - item_id
                 - label
                 - timestamp
-        log_root: ../outputs/logs/
+        log_root: ../rank_results/logs/
         log_wandb: true
         metric_decimal_place: 4
         metrics:
@@ -158,7 +158,7 @@ external_config_dict:
             - GiniIndex
             - TailPercentage
         model: BPR
-        output_path: outputs/results/ml-1m/
+        output_path: rank_results/results/ml-1m/
         reg_weight: 0.0003
         repeatable: true
         reproducibility: true
@@ -183,7 +183,7 @@ external_config_dict:
             sample_num: 1
         valid_metric: NDCG@10
         valid_metric_bigger: true
-        wandb_path: outputs/
+        wandb_path: rank_results/
         wandb_project: jiaqing61-tud
         wandb_run_id: null
         wandb_run_name: null
@@ -223,7 +223,7 @@ file_config_dict:
                 - item_id
                 - label
                 - timestamp
-        log_root: ../outputs/logs/
+        log_root: ../rank_results/logs/
         log_wandb: true
         metric_decimal_place: 4
         metrics:
@@ -237,7 +237,7 @@ file_config_dict:
             - GiniIndex
             - TailPercentage
         model: BPR
-        output_path: outputs/results/ml-1m/
+        output_path: rank_results/results/ml-1m/
         reg_weight: 0.0003
         repeatable: true
         reproducibility: true
@@ -262,7 +262,7 @@ file_config_dict:
             sample_num: 1
         valid_metric: NDCG@10
         valid_metric_bigger: true
-        wandb_path: outputs/
+        wandb_path: rank_results/
         wandb_project: jiaqing61-tud
         wandb_run_id: null
         wandb_run_name: null
@@ -337,7 +337,7 @@ final_config_dict:
                 - label
                 - timestamp
         local_rank: 0
-        log_root: ../outputs/logs/
+        log_root: ../rank_results/logs/
         log_wandb: true
         loss_decimal_place: 4
         metric_decimal_place: 4
@@ -355,7 +355,7 @@ final_config_dict:
         normalize_all: null
         normalize_field: null
         numerical_features: []
-        output_path: outputs/results/ml-1m/
+        output_path: rank_results/results/ml-1m/
         preload_weight: null
         reg_weight: 0.0003
         relation_kg_num_interval: '[0,inf)'
@@ -400,7 +400,7 @@ final_config_dict:
         valid_neg_sample_args:
             distribution: uniform
             sample_num: none
-        wandb_path: outputs/
+        wandb_path: rank_results/
         wandb_project: jiaqing61-tud
         wandb_run_id: null
         wandb_run_name: null
