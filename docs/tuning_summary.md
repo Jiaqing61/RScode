@@ -7,11 +7,11 @@ BPR is a **pairwise ranking** algorithm that learns by comparing item pairs duri
 | ------------------------- |--------------------|-----------------------|
 | **Embedding Size**        | 128                | 64                    |
 | **Learning Rate**         | 0.001              | 0.0005                |
-| **Train Batch Size**      | 512                | 1024                  |
-| **Epochs**                | 60                 | 60                    |
+| **Train Batch Size**      | 2048               | 1024                  |
+| **Epochs**                | 100                | 100                   |
 | **Regularization Weight** | 0.0001             | 0.0003                |
 | **Seed**                  | 42                 | 42                    |
-| **Duration**              | 7m 21s             | 7m 52s                |
+| **Duration**              | 7m 21s             | 4m 52s                |
 | **Best Validation Score** | 0.36926            | 0.07745               |
 | **Gini @10**              | 0.56331            | –                     |
 | **Tail% @10**             | 0.03206            | –                     |

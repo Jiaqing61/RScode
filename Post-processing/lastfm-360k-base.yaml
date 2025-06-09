@@ -18,7 +18,7 @@ reproducibility: true # Force deterministic operations for reproducibility
 
 state: INFO # Logging level
 encoding: utf-8 # File encoding format
-show_progress: true # Disable progress bars (enable for interactive runs)
+show_progress: false # Disable progress bars (enable for interactive runs)
 shuffle: true # Shuffle training data each epoch
 
 # ============================== Paths ==============================
@@ -43,8 +43,8 @@ dataset_save_path: ~ # Use RecBole’s default dataset caching logic
 save_dataloaders: true # Save split dataloaders for reuse
 dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
 
-checkpoint_dir: ../checkpoint_saved/lastfm-360k/ # Path to save model checkpoints
-output_path: ../outputs/results/lastfm-360k/ # Path for final metrics, plots, and logs
+checkpoint_dir: checkpoint_saved/lastfm-360k/ # Path to save model checkpoints
+output_path: outputs/results/lastfm-360k/ # Path for final metrics, plots, and logs
 
 log_wandb: true                                  # Enable logging to Weights & Biases
 wandb_project: jiaqing61-tud                            # W&B project name
@@ -55,7 +55,7 @@ wandb_run_name: ~   # set dynamically: {model}-{dataset}-{timestamp}
 date: ~ # set dynamically: YYYY-MM-DD
 timestamp: ~ # set dynamically: YYYY-MM-DD_HH-MM-SS
 
-log_root: ../outputs/logs/
+log_root: outputs/logs/
 
 # ============================== Evaluation Settings ==============================
 # Controls evaluation strategy, split mode, ranking metrics, and early stopping behavior.
@@ -140,7 +140,7 @@ load_col:
 
 ## -------------------------- Group-Based Fairness Evaluation --------------------------
 #user_group_fields: [ 'gender', 'activity_group' ]  # User-level group dimensions for fairness analysis
-#item_group_fields: [ 'popularity_group' ]                       # Item-level group dimension (e.g., long-tail analysis)
+#item_group_fields: [ 'popularity_group' ]          # Item-level group dimension (e.g., long-tail analysis)
 
 # ============================== Model Settings ==============================
 model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
@@ -148,7 +148,7 @@ model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
 learner: adam # Optimizer used (e.g., adam, sgd)
 
 eval_step: 1 # Evaluate every N epochs
-stopping_step: 5 # Early stopping patience (if no improvement for 10 evals)
+stopping_step: 10 # Early stopping patience (if no improvement for 10 evals)
 epochs: 100 # Maximum number of epochs
 
 # -------------------------- Training: Pairwise Negative Sampling --------------------------
@@ -161,7 +161,7 @@ train_neg_sample_args:
 
 # ============================== Hyperparameters ==============================
 embedding_size: 64 # Dimensionality of user/item embeddings
-learning_rate: 0.001 # Initial learning rate
+learning_rate: 0.0005 # Initial learning rate
 train_batch_size: 1024 # Mini-batch size for training
 reg_weight: 0.0003 # L2 regularization on embeddings
 
