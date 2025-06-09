@@ -1,0 +1,42 @@
+{
+  "os": "macOS-15.0-arm64-arm-64bit",
+  "python": "CPython 3.10.17",
+  "startedAt": "2025-06-09T12:32:09.688535Z",
+  "program": "Relabel/relabel_ml.ipynb",
+  "git": {
+    "remote": "https://github.com/Jiaqing61/RScode.git",
+    "commit": "a52053fe949d4bbe4fb3f88b3469abe7199b2879"
+  },
+  "email": "jiaqinghuang61@gmail.com",
+  "root": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/Relabel",
+  "host": "macbookpro.home",
+  "executable": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/.venv/bin/python",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "994662584320",
+      "used": "687887691776"
+    },
+    "/System/Volumes/Data": {
+      "total": "994662584320",
+      "used": "687887691776"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 10
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 16,
+    "swapTotalBytes": "10737418240",
+    "ramTotalBytes": "17179869184"
+  }
+}
