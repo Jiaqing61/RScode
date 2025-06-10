@@ -43,19 +43,19 @@ dataset_save_path: ~ # Use RecBole’s default dataset caching logic
 save_dataloaders: true # Save split dataloaders for reuse
 dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
 
-checkpoint_dir: checkpoint_saved/lastfm-360k/ # Path to save model checkpoints
-output_path: rank_results/results/lastfm-360k/ # Path for final metrics, plots, and logs
+checkpoint_dir: checkpoint_saved/lastfm-nl/ # Path to save model checkpoints
+output_path: outputs/lastfm-nl/ # Path for final metrics, plots, and logs
 
 log_wandb: true                                  # Enable logging to Weights & Biases
 wandb_project: jiaqing61-tud                            # W&B project name
-wandb_path: rank_results/
+wandb_path: outputs/
 wandb_run_id: ~
 wandb_run_name: ~   # set dynamically: {model}-{dataset}-{timestamp}
 
 date: ~ # set dynamically: YYYY-MM-DD
 timestamp: ~ # set dynamically: YYYY-MM-DD_HH-MM-SS
 
-log_root: rank_results/logs/
+log_root: outputs/logs/
 
 # ============================== Evaluation Settings ==============================
 # Controls evaluation strategy, split mode, ranking metrics, and early stopping behavior.
@@ -110,8 +110,8 @@ metric_decimal_place: 4 # Precision for reported metrics
 skip_test: false # Optionally skip test evaluation (useful for debugging)
 tail_ratio: 0.2 # Define bottom 20% of items (by interaction mass) as tail
 
-# ============================== Last.FM 360K Dataset Configuration ==============================
-dataset: lastfm-360k
+# ============================== Last.FM nl Dataset Configuration ==============================
+dataset: lastfm-nl
 # -------------------------- File Format --------------------------
 field_separator: "\t" # Delimiter used in atomic files (.inter, .user, .item)
 seq_separator: " " # Delimiter for sequence-type fields (not used in this dataset)

@@ -43,8 +43,8 @@ dataset_save_path: ~ # Use RecBole’s default dataset caching logic
 save_dataloaders: true # Save split dataloaders for reuse
 dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
 
-checkpoint_dir: checkpoint_saved/ml-1m/ # Path to save model checkpoints
-output_path: outputs/ml-1m/ # Path for final metrics, plots, and logs
+checkpoint_dir: checkpoint_saved/lastfm-nl/ # Path to save model checkpoints
+output_path: outputs/lastfm-nl/ # Path for final metrics, plots, and logs
 
 log_wandb: true                                  # Enable logging to Weights & Biases
 wandb_project: jiaqing61-tud                            # W&B project name
@@ -110,25 +110,26 @@ metric_decimal_place: 4 # Precision for reported metrics
 skip_test: false # Optionally skip test evaluation (useful for debugging)
 tail_ratio: 0.2 # Define bottom 20% of items (by interaction mass) as tail
 
-# ============================== MovieLens 1M Dataset Configuration ==============================
-dataset: ml-1m
+# ============================== Last.FM nl Dataset Configuration ==============================
+dataset: lastfm-nl
 # -------------------------- File Format --------------------------
-field_separator: "\t"                 # Delimiter used in atomic files (.inter, .user, .item)
-seq_separator: " "                    # Delimiter for sequence-type fields (not used in this dataset)
+field_separator: "\t" # Delimiter used in atomic files (.inter, .user, .item)
+seq_separator: " " # Delimiter for sequence-type fields (not used in this dataset)
 
 # -------------------------- Field Mappings --------------------------
 USER_ID_FIELD: user_id # Field name for user ID
-ITEM_ID_FIELD: item_id # Field name for item ID
-#RATING_FIELD: rating # Field name for rating score
+ITEM_ID_FIELD: artist_id # Field name for item ID
+#RATING_FIELD: plays # Field name for rating score  #plays_user_norm
 LABEL_FIELD: label
-TIME_FIELD: timestamp # Field name for interaction timestamp
+#RATING_FIELD: plays_user_norm # Field name for user-normalized plays (if used)
 
 # -------------------------- Label Binarization --------------------------
 #threshold:
-#  rating: 3                           # Ratings ≥ 3 → label = 1 (positive), else → label = 0 (negative)
+#  plays: 2                           # plays ≥ 2 → label = 1 (positive), else → label = 0 (negative)
+#  plays_user_norm: 0.1              # plays_user_norm ≥ 0.1 → label = 1 (positive), else → label = 0 (negative)
 # -------------------------- Column Selection --------------------------
 load_col:
-  inter: [ 'user_id', 'item_id', 'label', 'timestamp' ]       # Load selected interaction fields
+  inter: [ "user_id", "artist_id", "label" ] # Load selected interaction fields
 
 # -------------------------- Interaction Filtering --------------------------
 #val_interval:
@@ -138,7 +139,7 @@ load_col:
 
 ## -------------------------- Group-Based Fairness Evaluation --------------------------
 #user_group_fields: [ 'gender', 'activity_group' ]  # User-level group dimensions for fairness analysis
-#item_group_fields: [ 'popularity_group' ]                       # Item-level group dimension (e.g., long-tail analysis)
+#item_group_fields: [ 'popularity_group' ]          # Item-level group dimension (e.g., long-tail analysis)
 
 # ============================== Model Settings ==============================
 model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
@@ -162,5 +163,4 @@ embedding_size: 64 # Dimensionality of user/item embeddings
 learning_rate: 0.0005 # Initial learning rate
 train_batch_size: 1024 # Mini-batch size for training
 reg_weight: 0.0003 # L2 regularization on embeddings
-
 
