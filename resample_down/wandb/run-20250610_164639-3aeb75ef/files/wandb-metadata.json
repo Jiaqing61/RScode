@@ -1,0 +1,42 @@
+{
+  "os": "macOS-15.0-arm64-arm-64bit",
+  "python": "CPython 3.10.17",
+  "startedAt": "2025-06-10T14:46:39.848116Z",
+  "program": "resample_down/lastfm-nl-resample-down.ipynb",
+  "git": {
+    "remote": "https://github.com/Jiaqing61/RScode.git",
+    "commit": "61da7ec0033d16e2c61ad6d6526e0d513e1efb39"
+  },
+  "email": "jiaqinghuang61@gmail.com",
+  "root": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/resample_down",
+  "host": "macbookpro.home",
+  "executable": "/Users/huangjiaqing/Desktop/Recommender Systems/RScode/.venv/bin/python",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "994662584320",
+      "used": "690473009152"
+    },
+    "/System/Volumes/Data": {
+      "total": "994662584320",
+      "used": "690473009152"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 10
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 16,
+    "swapTotalBytes": "11811160064",
+    "ramTotalBytes": "17179869184"
+  }
+}
