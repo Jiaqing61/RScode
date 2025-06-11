@@ -1,0 +1,166 @@
+# ============================== Environment Settings ==============================
+# Controls the execution environment, logging, reproducibility, and data loading.
+# ----------------------------------------------------------------------------------
+# - gpu_id (str)               : ID of the available GPU(s) to use. Use '-1' for CPU.
+# - worker (int)               : Number of worker threads for data loading.
+# - seed (int)                 : Random seed to control reproducibility.
+# - reproducibility (bool)     : If true, enables deterministic behavior across runs.
+# - state (str)                : Logging verbosity level. ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+# - encoding (str)             : Character encoding for file I/O (e.g., utf-8).
+# - show_progress (bool)       : Whether to display progress bars.
+# - shuffle (bool)             : Whether to shuffle training data before each epoch.
+# ----------------------------------------------------------------------------------
+
+gpu_id: "0" # GPU to use (set to '-1' for CPU)
+workers: 2 # Number of data loader workers
+seed: 42 # Random seed for reproducibility
+reproducibility: true # Force deterministic operations for reproducibility
+
+state: INFO # Logging level
+encoding: utf-8 # File encoding format
+show_progress: false # Disable progress bars (enable for interactive runs)
+shuffle: true # Shuffle training data each epoch
+
+# ============================== Paths ==============================
+# Directories for datasets, dataloaders, model checkpoints, and results.
+# ----------------------------------------------------------------------------------
+# - data_path (str)            : Path to raw atomic datasets.
+# - save_dataset (bool)        : Whether to save filtered dataset as a .pth file.
+# - dataset_save_path (str)    : Path to save/load dataset. '~' = use default fallback logic.
+# - save_dataloaders (bool)    : Whether to save dataloaders after data preparation.
+# - dataloaders_save_path (str): Path to save/load dataloaders. '~' = use default fallback logic.
+# - checkpoint_dir (str)       : Directory to store trained model checkpoints.
+# - output_path (str)          : Path to store logs, plots, and metric results.
+# - log_wandb (bool)           : Enable logging to Weights & Biases.
+# - wandb_project (str)        : Name of W&B project.
+# ----------------------------------------------------------------------------------
+
+data_path: datasets/ # Input dataset directory
+
+save_dataset: true # Save processed dataset (.pth)
+dataset_save_path: ~ # Use RecBole’s default dataset caching logic
+
+save_dataloaders: true # Save split dataloaders for reuse
+dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
+
+checkpoint_dir: checkpoint_saved/lastfm-nl/ # Path to save model checkpoints
+output_path: outputs/lastfm-nl/ # Path for final metrics, plots, and logs
+
+log_wandb: true                                  # Enable logging to Weights & Biases
+wandb_project: jiaqing61-tud                            # W&B project name
+wandb_path: outputs/
+wandb_run_id: ~
+wandb_run_name: ~   # set dynamically: {model}-{dataset}-{timestamp}
+
+date: ~ # set dynamically: YYYY-MM-DD
+timestamp: ~ # set dynamically: YYYY-MM-DD_HH-MM-SS
+
+log_root: outputs/logs/
+
+# ============================== Evaluation Settings ==============================
+# Controls evaluation strategy, split mode, ranking metrics, and early stopping behavior.
+# ----------------------------------------------------------------------------------
+# - eval_args (dict):
+#     - split (dict)           : Data split method — RS (ratio) or LS (leave-one-out).
+#     - mode (str|dict)        : Item evaluation scope — e.g., 'full', 'uni100', 'pop100', 'labeled'.
+#     - order (str)            : Interaction order before splitting — 'RO' (random), 'TO' (temporal).
+#     - group_by (str)         : Grouping dimension for splitting — 'user' or 'none'.
+#
+# - repeatable (bool)          : Use fixed item ranking per user for consistency (non-sequential models).
+# - metrics (list of str)      : List of evaluation metrics (accuracy, fairness, diversity).
+# - topk (list or int)         : Evaluate top-K performance (single value or list).
+# - valid_metric (str)         : Metric for early stopping — must appear in `metrics`.
+# - valid_metric_bigger (bool) : If true, higher values of `valid_metric` indicate better performance.
+# - eval_batch_size (int)      : Batch size during evaluation.
+# - metric_decimal_place (int) : Number of decimal places for reported metric scores.
+# ----------------------------------------------------------------------------------
+
+repeatable: true # Use fixed ranking behavior for consistent evaluation
+
+eval_args:
+  #  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
+  mode: { "valid": full, "test": full } # Evaluate on full item set
+  #  order: RO # Random order before splitting
+  #  group_by: user # Group data by user for splitting
+
+benchmark_filename: [ 'train', 'valid', 'test' ]
+
+metrics: [
+  "Precision",
+  "Recall",
+  "Hit", # Accuracy metrics
+  "NDCG",
+  "ItemCoverage", # item Diversity
+  "AveragePopularity", # pop
+  "ShannonEntropy", # Diversity metrics
+  "GiniIndex", #pop - niche
+  "TailPercentage"
+]
+
+topk: 10 # Evaluate metrics at multiple Top-K levels
+valid_metric: NDCG@10 # Use NDCG@10 for early stopping
+valid_metric_bigger: true # Higher NDCG@10 is considered better
+eval_batch_size: 4096 # Evaluation batch size (adjust to GPU memory)
+metric_decimal_place: 4 # Precision for reported metrics
+
+# ============================== Custom Project Settings ==============================
+# Fairness-specific configuration for tail-item group definitions and test skipping.
+# ----------------------------------------------------------------------------------
+
+skip_test: false # Optionally skip test evaluation (useful for debugging)
+tail_ratio: 0.2 # Define bottom 20% of items (by interaction mass) as tail
+
+# ============================== Last.FM nl Dataset Configuration ==============================
+dataset: lastfm-nl
+# -------------------------- File Format --------------------------
+field_separator: "\t" # Delimiter used in atomic files (.inter, .user, .item)
+seq_separator: " " # Delimiter for sequence-type fields (not used in this dataset)
+
+# -------------------------- Field Mappings --------------------------
+USER_ID_FIELD: user_id # Field name for user ID
+ITEM_ID_FIELD: artist_id # Field name for item ID
+#RATING_FIELD: plays # Field name for rating score  #plays_user_norm
+LABEL_FIELD: label
+#RATING_FIELD: plays_user_norm # Field name for user-normalized plays (if used)
+
+# -------------------------- Label Binarization --------------------------
+#threshold:
+#  plays: 2                           # plays ≥ 2 → label = 1 (positive), else → label = 0 (negative)
+#  plays_user_norm: 0.1              # plays_user_norm ≥ 0.1 → label = 1 (positive), else → label = 0 (negative)
+# -------------------------- Column Selection --------------------------
+load_col:
+  inter: [ "user_id", "artist_id", "label" ] # Load selected interaction fields
+
+# -------------------------- Interaction Filtering --------------------------
+#val_interval:
+#rating: "[5,inf)" # Keep only interactions with ratings ≥ 5 (treated as implicit positives)
+#user_inter_num_interval: "[30,inf)" # Retain users with 5 or more interactions
+#item_inter_num_interval: "[0,inf)" # Retain items with at least 1 interaction
+
+## -------------------------- Group-Based Fairness Evaluation --------------------------
+#user_group_fields: [ 'gender', 'activity_group' ]  # User-level group dimensions for fairness analysis
+#item_group_fields: [ 'popularity_group' ]          # Item-level group dimension (e.g., long-tail analysis)
+
+# ============================== Model Settings ==============================
+model: BPR # Bayesian Personalized Ranking (pairwise implicit MF)
+
+learner: adam # Optimizer used (e.g., adam, sgd)
+
+eval_step: 1 # Evaluate every N epochs
+stopping_step: 10 # Early stopping patience (if no improvement for 10 evals)
+epochs: 100 # Maximum number of epochs
+
+# -------------------------- Training: Pairwise Negative Sampling --------------------------
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 1
+  alpha: 1.0
+  dynamic: False
+  candidate_num: 0
+
+# ============================== Hyperparameters ==============================
+embedding_size: 64 # Dimensionality of user/item embeddings
+learning_rate: 0.0005 # Initial learning rate
+train_batch_size: 1024 # Mini-batch size for training
+reg_weight: 0.0003 # L2 regularization on embeddings
+
