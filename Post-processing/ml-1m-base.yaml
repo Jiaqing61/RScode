@@ -87,6 +87,7 @@ metrics: [
   "Precision",
   "Recall",
   "Hit", # Accuracy metrics
+  "MAP", # Mean Average Precision
   "NDCG",
   "ItemCoverage", # item Diversity
   "AveragePopularity", # pop
