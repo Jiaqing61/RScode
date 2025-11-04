@@ -18,7 +18,7 @@ reproducibility: true # Force deterministic operations for reproducibility
 
 state: INFO # Logging level
 encoding: utf-8 # File encoding format
-show_progress: true # Disable progress bars (enable for interactive runs)
+show_progress: false # Disable progress bars (enable for interactive runs)
 shuffle: true # Shuffle training data each epoch
 
 # ============================== Paths ==============================
@@ -43,8 +43,8 @@ dataset_save_path: ~ # Use RecBole’s default dataset caching logic
 save_dataloaders: true # Save split dataloaders for reuse
 dataloaders_save_path: ~ # Use RecBole’s default dataloader caching logic
 
-checkpoint_dir: ../checkpoint_saved/ml-1m/ # Path to save model checkpoints
-output_path: ../outputs/results/ml-1m/ # Path for final metrics, plots, and logs
+checkpoint_dir: checkpoint_saved/ml-1m/ # Path to save model checkpoints
+output_path: outputs/ml-1m/ # Path for final metrics, plots, and logs
 
 log_wandb: true                                  # Enable logging to Weights & Biases
 wandb_project: jiaqing61-tud                            # W&B project name
@@ -55,7 +55,7 @@ wandb_run_name: ~   # set dynamically: {model}-{dataset}-{timestamp}
 date: ~ # set dynamically: YYYY-MM-DD
 timestamp: ~ # set dynamically: YYYY-MM-DD_HH-MM-SS
 
-log_root: ../outputs/logs/
+log_root: outputs/logs/
 
 # ============================== Evaluation Settings ==============================
 # Controls evaluation strategy, split mode, ranking metrics, and early stopping behavior.
@@ -78,20 +78,21 @@ log_root: ../outputs/logs/
 repeatable: true # Use fixed ranking behavior for consistent evaluation
 
 eval_args:
-  #  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
+  split: { "RS": [0.8, 0.1, 0.1] } # 80% train / 10% valid / 10% test
   mode: { "valid": full, "test": full } # Evaluate on full item set
   order: RO # Random order before splitting
   group_by: user # Group data by user for splitting
 
 metrics: [
-  "Recall",
   "Precision",
+  "Recall",
   "Hit", # Accuracy metrics
+  "MAP", # Mean Average Precision
   "NDCG",
   "ItemCoverage", # item Diversity
   "AveragePopularity", # pop
-  "GiniIndex", #pop - niche
   "ShannonEntropy", # Diversity metrics
+  "GiniIndex", #pop - niche
   "TailPercentage"
 ]
 
