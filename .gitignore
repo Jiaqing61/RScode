@@ -34,7 +34,7 @@ dist/
 .eggs/
 
 # Ignore datasets
-datasets/
-checkpoint_saved/
+#datasets/
+#checkpoint_saved/
 
 
