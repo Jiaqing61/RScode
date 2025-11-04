@@ -35,5 +35,6 @@ dist/
 
 # Ignore datasets
 datasets/
+checkpoint_saved/
 
 
